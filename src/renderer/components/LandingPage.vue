@@ -183,9 +183,7 @@
             list = this.cards11
             break
         }
-        for (let i = 0; i < list.length; i++) {
-          if (list[i].value === value.value) return
-        }
+        if (this.isContainsClick(type, value.value)) return
         let card = list[index]
         card.value = value.value
         card.name = value.name
@@ -196,7 +194,25 @@
           this.doSort(list, 0, 0)
         }
       },
-      doSort (list, count, value) {
+      isContainsClick (type, value) { // 判断重复点击
+        let bigList = []
+        if (type < 4) {
+          bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3)
+        } else if (type < 7) {
+          bigList = bigList.concat(this.cards4).concat(this.cards5).concat(this.cards6)
+        } else if (type < 10) {
+          bigList = bigList.concat(this.cards7).concat(this.cards8).concat(this.cards9)
+        } else if (type === 10) {
+          bigList = bigList.concat(this.cards10)
+        } else {
+          bigList = bigList.concat(this.cards11)
+        }
+        for (let i = 0; i < bigList.length; i++) {
+          if (bigList[i].value === value) return true
+        }
+        return false
+      },
+      doSort (list, count, value) { // 把相同数向前排序
         let s = 0 // 相同项起始下标
         let c = 1 // 相同项个数
         for (let i = 0; i < list.length - 1; i++) {

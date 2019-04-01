@@ -30,7 +30,7 @@
                 <!-- 右边玩家 -->
                 <div style="margin-left: 100px">
                     <div style="margin-left: 110px">右方游戏区域</div>
-                    <div>
+                    <div style="margin-left: 100px">
                         <card :index="index" :name="card.name" :type="4" :key="index" v-for="(card, index) in cards4">
                             {{card.name}}
                         </card>
@@ -150,7 +150,7 @@
         this.resetMySelf()
       },
       onClick: function (value, index, type) {
-        if (type > 6 && type < 10) return
+        if ((type > 6 && type < 10) || type === 11) return
         let list = []
         switch (type) {
           case 1:
@@ -174,10 +174,6 @@
           case 10:
             list = this.cards10
             break
-          case 11:
-            list = this.cards11
-            this.autoDeletePoker(list[index])
-            break
         }
         if (this.isContainsClick(type, value.value)) return
         let card = list[index]
@@ -194,10 +190,8 @@
           bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3)
         } else if (type < 7) {
           bigList = bigList.concat(this.cards4).concat(this.cards5).concat(this.cards6)
-        } else if (type === 10) {
-          bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3).concat(this.cards10).concat(this.cards11)
         } else {
-          bigList = bigList.concat(this.cards11)
+          bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3).concat(this.cards10).concat(this.cards11)
         }
         for (let i = 0; i < bigList.length; i++) {
           if (bigList[i].value === value) return true
@@ -230,11 +224,8 @@
         }
         let sameValue = 0
         if (s > 0 && c > 1) {
-          console.log(list)
           const same = list.splice(s, c)
-          console.log(same)
           sameValue = same[0].value
-          console.log('count: ' + count + ' -- c: ' + c + ' -- sameValue: ' + sameValue + ' -- value' + value)
           if (count > c || (count === c && value % 100 > sameValue % 100)) {
             list.splice(count, 0, ...same)
           } else {
@@ -244,18 +235,6 @@
         if (s + c < length) {
           this.doSort(list, c, sameValue)
         }
-      },
-      autoDeletePoker (card) { // 自动去除发牌区已选择的牌
-        console.log(card)
-        for (let i = 0; i < this.cards10; i++) {
-          console.log(this.cards10[i])
-          if (card.value === this.cards10[i].value) {
-            console.log(i)
-            this.cards10.splice(i, 1)
-            break
-          }
-        }
-        console.log(this.cards10)
       },
       autoPick () { // 计算并自动摆出己方的牌
         console.log('autoPick')

@@ -192,6 +192,41 @@
         list.sort((a, b) => {
           return b.value % 100 - a.value % 100
         })
+        if (list[list.length - 1].value !== -1) {
+          this.doSort(list, 0, 0)
+        }
+      },
+      doSort (list, count, value) {
+        let s = 0 // 相同项起始下标
+        let c = 1 // 相同项个数
+        for (let i = 0; i < list.length - 1; i++) {
+          if (list[i].value % 100 !== list[i + 1].value % 100) {
+            if (s > 0 && c > 1) {
+              break
+            }
+            s = i + 1
+            c = 1
+          } else {
+            c++
+          }
+          console.log(s)
+          console.log(c)
+        }
+        let sameValue = 0
+        if (s > 0 && c > 1) {
+          const same = list.splice(s, c)
+          sameValue = same[0].value
+          if (count > c || (count === c && value > sameValue)) {
+            list.splice(count, 0, ...same)
+          } else {
+            list.splice(0, 0, ...same)
+          }
+          console.log(list)
+          console.log(same)
+        }
+        if (s + c !== list.length) {
+          this.doSort(list, c, sameValue)
+        }
       }
     }
   }

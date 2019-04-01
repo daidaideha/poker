@@ -84,6 +84,9 @@
                 </div>
             </div>
             <button @click="resetMySelf" style="width: 80px; height: 30px; position: absolute; top:730px;">重置</button>
+            <button @click="autoPick" style="width: 80px; height: 30px; position: absolute; top:730px; left: 200px;">
+                摆牌
+            </button>
             <button @click="resetAll" style="width: 80px; height: 30px; position: absolute; top:800px;">重置全部</button>
         </main>
     </div>
@@ -147,6 +150,7 @@
         this.resetMySelf()
       },
       onClick: function (value, index, type) {
+        if (type > 6 && type < 10) return
         let list = []
         switch (type) {
           case 1:
@@ -167,20 +171,12 @@
           case 6:
             list = this.cards6
             break
-          case 7:
-            list = this.cards7
-            break
-          case 8:
-            list = this.cards8
-            break
-          case 9:
-            list = this.cards9
-            break
           case 10:
             list = this.cards10
             break
           case 11:
             list = this.cards11
+            this.autoDeletePoker(list[index])
             break
         }
         if (this.isContainsClick(type, value.value)) return
@@ -190,9 +186,7 @@
         list.sort((a, b) => {
           return b.value % 100 - a.value % 100
         })
-        if (list[list.length - 1].value !== -1) {
-          this.doSort(list, 0, 0)
-        }
+        this.doSort(list, 0, 0)
       },
       isContainsClick (type, value) { // 判断重复点击
         let bigList = []
@@ -200,10 +194,8 @@
           bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3)
         } else if (type < 7) {
           bigList = bigList.concat(this.cards4).concat(this.cards5).concat(this.cards6)
-        } else if (type < 10) {
-          bigList = bigList.concat(this.cards7).concat(this.cards8).concat(this.cards9)
         } else if (type === 10) {
-          bigList = bigList.concat(this.cards10)
+          bigList = bigList.concat(this.cards).concat(this.cards2).concat(this.cards3).concat(this.cards10).concat(this.cards11)
         } else {
           bigList = bigList.concat(this.cards11)
         }
@@ -215,10 +207,20 @@
       doSort (list, count, value) { // 把相同数向前排序
         let s = 0 // 相同项起始下标
         let c = 1 // 相同项个数
+        let length = list.length - 1 // 填入的数据长度
         for (let i = 0; i < list.length - 1; i++) {
+          if (list[i].value === -1) {
+            length = i
+            break
+          }
           if (list[i].value % 100 !== list[i + 1].value % 100) {
-            if (s > 0 && c > 1) {
-              break
+            if (c > 1) {
+              if (s > 0) {
+                break
+              } else {
+                count = c
+                value = list[i].value
+              }
             }
             s = i + 1
             c = 1
@@ -228,17 +230,35 @@
         }
         let sameValue = 0
         if (s > 0 && c > 1) {
+          console.log(list)
           const same = list.splice(s, c)
+          console.log(same)
           sameValue = same[0].value
-          if (count > c || (count === c && value > sameValue)) {
+          console.log('count: ' + count + ' -- c: ' + c + ' -- sameValue: ' + sameValue + ' -- value' + value)
+          if (count > c || (count === c && value % 100 > sameValue % 100)) {
             list.splice(count, 0, ...same)
           } else {
             list.splice(0, 0, ...same)
           }
         }
-        if (s + c !== list.length) {
+        if (s + c < length) {
           this.doSort(list, c, sameValue)
         }
+      },
+      autoDeletePoker (card) { // 自动去除发牌区已选择的牌
+        console.log(card)
+        for (let i = 0; i < this.cards10; i++) {
+          console.log(this.cards10[i])
+          if (card.value === this.cards10[i].value) {
+            console.log(i)
+            this.cards10.splice(i, 1)
+            break
+          }
+        }
+        console.log(this.cards10)
+      },
+      autoPick () { // 计算并自动摆出己方的牌
+        console.log('autoPick')
       }
     }
   }

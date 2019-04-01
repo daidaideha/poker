@@ -97,616 +97,54 @@
     components: {Card},
     data () {
       return {
-        cards: [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }],
-        cards2: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards3: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards4: [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }],
-        cards5: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards6: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards7: [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }],
-        cards8: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards9: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards10: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }],
-        cards11: [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
+        cards: this.getDefaultList(3),
+        cards2: this.getDefaultList(5),
+        cards3: this.getDefaultList(5),
+        cards4: this.getDefaultList(3),
+        cards5: this.getDefaultList(5),
+        cards6: this.getDefaultList(5),
+        cards7: this.getDefaultList(3),
+        cards8: this.getDefaultList(5),
+        cards9: this.getDefaultList(5),
+        cards10: this.getDefaultList(17),
+        cards11: this.getDefaultList(4)
       }
     },
     methods: {
+      getDefaultList (size) {
+        let defaultList = []
+        for (let i = 0; i < size; i++) {
+          defaultList.push({
+            name: '',
+            value: -1
+          })
+        }
+        return defaultList
+      },
       resetLeft () {
-        this.cards = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards2 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards3 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
+        this.cards = this.getDefaultList(3)
+        this.cards2 = this.getDefaultList(5)
+        this.cards3 = this.getDefaultList(5)
       },
       resetRight () {
-        this.cards4 = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards5 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards6 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
+        this.cards4 = this.getDefaultList(3)
+        this.cards5 = this.getDefaultList(5)
+        this.cards6 = this.getDefaultList(5)
       },
       resetMySelf () {
-        this.cards7 = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards8 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards9 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards10 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards11 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
+        this.cards7 = this.getDefaultList(3)
+        this.cards8 = this.getDefaultList(5)
+        this.cards9 = this.getDefaultList(5)
+        this.cards10 = this.getDefaultList(17)
+        this.cards11 = this.getDefaultList(4)
       },
       resetAll () {
-        this.cards = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards2 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards3 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards4 = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards5 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards6 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards7 = [{
-          name: '',
-          value: -1,
-          position: 0
-        }, {
-          name: '',
-          value: -1,
-          position: 1
-        }, {
-          name: '',
-          value: -1,
-          position: 2
-        }]
-        this.cards8 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards9 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards10 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
-        this.cards11 = [{
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }, {
-          name: '',
-          value: -1
-        }]
+        // 左边
+        this.resetLeft()
+        // 右边
+        this.resetRight()
+        // 自己
+        this.resetMySelf()
       },
       onClick: function (value, index, type) {
         let list = []
@@ -745,8 +183,10 @@
             list = this.cards11
             break
         }
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].value === value.value) return
+        }
         let card = list[index]
-        // if (card.value === value.value) return
         card.value = value.value
         card.name = value.name
         list.sort((a, b) => {
@@ -781,12 +221,6 @@
         width: 100vw;
     }
 
-    #logo {
-        height: auto;
-        margin-bottom: 20px;
-        width: 420px;
-    }
-
     main {
         display: flex;
         justify-content: space-between;
@@ -794,29 +228,6 @@
 
     main > div {
         flex-basis: 50%;
-    }
-
-    .left-side {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .welcome {
-        color: #555;
-        font-size: 23px;
-        margin-bottom: 10px;
-    }
-
-    .title {
-        color: #2c3e50;
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 6px;
-    }
-
-    .title.alt {
-        font-size: 18px;
-        margin-bottom: 10px;
     }
 
     .doc p {

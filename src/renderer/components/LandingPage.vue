@@ -209,8 +209,6 @@
           } else {
             c++
           }
-          console.log(s)
-          console.log(c)
         }
         let sameValue = 0
         if (s > 0 && c > 1) {
@@ -221,8 +219,6 @@
           } else {
             list.splice(0, 0, ...same)
           }
-          console.log(list)
-          console.log(same)
         }
         if (s + c !== list.length) {
           this.doSort(list, c, sameValue)

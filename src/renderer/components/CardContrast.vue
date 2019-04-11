@@ -102,7 +102,7 @@
   function descend (x, y) { // 按照数组的第1个值降序排列
     return y[0] - x[0]
 }
-  
+
   /* 判断是否为两对 */
   function isTwoPairs (arrs) {
     arrs.sort(ascend)
@@ -172,14 +172,16 @@
     }
   }
 
-  console.log(pokers4.sort(ascend) + '<br>')
-  console.log(GetSingleScore(doSort(pokers4)))
+  console.log(pokers4.sort(descend) + '<br>')
+  let list = pokers4
+  doSort(list.sort(descend), 0, 0)
+  console.log(GetSingleScore(list))
 
   function contrast (arr1, arr2) {
     let point1 = 0
     let point2 = 0
     for (let i = 0; i < arr1; i++) {
-  
+
     }
     for (let i = 0; i < arr2; i++) {
 
@@ -187,27 +189,26 @@
   }
 
   function doSort (list, count, value) { // 把相同数向前排序
-    list.sort(descend)
     let s = 0 // 相同项起始下标
     let c = 1 // 相同项个数
     let length = list.length - 1 // 填入的数据长度
     for (let i = 0; i < list.length - 1; i++) {
-      if (list[i][0] === -1) {
+      if (list[i][0] === -1) { // 确定已经填入牌的长度
         length = i
         break
       }
-      if (list[i][0] !== list[i + 1][0]) {
-        if (c > 1) {
-          if (s > 0) {
+      if (list[i][0] !== list[i + 1][0]) { // 当前牌和下一张牌不相同
+        if (c > 1) { // 已经有相同的牌
+          if (s > 0) { // 相同的牌不在数组最前方
             break
           } else {
             count = c
             value = list[i][0]
           }
         }
-        s = i + 1
-        c = 1
-      } else {
+        s = i + 1 // 下移相同项起始项数
+        c = 1 // 重置相同项个数
+      } else { // 当前牌和下一张牌相同 相同数加1
         c++
       }
     }
@@ -222,9 +223,7 @@
       }
     }
     if (s + c < length) {
-      this.doSort(list, c, sameValue)
-    } else {
-      return list
+      doSort(list, c, sameValue)
     }
   }
 </script>

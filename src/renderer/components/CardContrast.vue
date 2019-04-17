@@ -129,8 +129,8 @@
     return false
   }
 
-  // 计算高牌分数
-  function GetSingleScore (arrs) {
+  // 计算分数
+  function GetScore (arrs) {
     // arrs.sort(descend)
     let score = 0
     let first = arrs[0][0] // 取出第一个数
@@ -149,33 +149,36 @@
     return first
   }
 
-  function GetScore (arr) {
+  function GetResultScore (arr) {
     let score = 0
+    doSort(arr.sort(descend), 0, 0)
+    let s = GetScore(arr)
     if (isFlush(arr) && isStraight(arr)) { // 同花顺
-      score += 100000
+      score = s * 100000000
     } else if (isSamePoker(arr, 4)) { // 四条
-      score += 10000
+      score = s * 10000000
     } else if (isFullHouse(arr)) { // 葫芦
-      score += 10000
+      score = s * 1000000
     } else if (isFlush(arr) && !isStraight(arr)) { // 同花
-      score += 10000
+      score = s * 100000
     } else if (!isFlush(arr) && isStraight(arr)) { // 顺子
-      score += 10000
+      score = s * 10000
     } else if (isSamePoker(arr, 3)) { // 三条
-      score += 10000
+      score = s * 1000
     } else if (isTwoPairs(arr)) { // 两对
-      score += 10000
+      score = s * 100
     } else if (isSamePoker(arr)) { // 一对
-      score += 10000
+      score = s * 10
     } else { // 高牌
-      score += 10000
+      score = s
     }
+    return score
   }
 
-  console.log(pokers4.sort(descend) + '<br>')
+  // console.log(pokers4.sort(descend) + '<br>')
   let list = pokers4
-  doSort(list.sort(descend), 0, 0)
-  console.log(GetSingleScore(list))
+  // doSort(list.sort(descend), 0, 0)
+  console.log(GetResultScore(list))
 
   function contrast (arr1, arr2) {
     let point1 = 0
